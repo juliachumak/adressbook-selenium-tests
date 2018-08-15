@@ -1,9 +1,5 @@
 package com.example.tests;
 
-import com.example.fw.ApplicationManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.Select;
-
 public class ContactData {
     public String firstname;
     public String lastname;
@@ -91,30 +87,4 @@ public class ContactData {
         return phone2;
     }
 
-    public void fillContactForm() {
-        ApplicationManager.driver.findElement(By.name("firstname")).clear();
-        ApplicationManager.driver.findElement(By.name("firstname")).sendKeys(getFirstname());
-        ApplicationManager.driver.findElement(By.name("lastname")).clear();
-        ApplicationManager.driver.findElement(By.name("lastname")).sendKeys(getLastname());
-        ApplicationManager.driver.findElement(By.name("address")).clear();
-        ApplicationManager.driver.findElement(By.name("address")).sendKeys(getAddress());
-        ApplicationManager.driver.findElement(By.name("home")).clear();
-        ApplicationManager.driver.findElement(By.name("home")).sendKeys(getHome());
-        ApplicationManager.driver.findElement(By.name("mobile")).clear();
-        ApplicationManager.driver.findElement(By.name("mobile")).sendKeys(getMobile());
-        ApplicationManager.driver.findElement(By.name("work")).clear();
-        ApplicationManager.driver.findElement(By.name("work")).sendKeys(getWork());
-        ApplicationManager.driver.findElement(By.name("email")).clear();
-        ApplicationManager.driver.findElement(By.name("email")).sendKeys(getEmail());
-        ApplicationManager.driver.findElement(By.name("email2")).clear();
-        ApplicationManager.driver.findElement(By.name("email2")).sendKeys(getEmail2());
-        new Select(ApplicationManager.driver.findElement(By.name("bday"))).selectByVisibleText(getBday());
-        new Select(ApplicationManager.driver.findElement(By.name("bmonth"))).selectByVisibleText(getBmonth());
-        ApplicationManager.driver.findElement(By.name("byear")).clear();
-        ApplicationManager.driver.findElement(By.name("byear")).sendKeys(getByear());
-        ApplicationManager.driver.findElement(By.name("address2")).clear();
-        ApplicationManager.driver.findElement(By.name("address2")).sendKeys(getAddress2());
-        ApplicationManager.driver.findElement(By.name("phone2")).clear();
-        ApplicationManager.driver.findElement(By.name("phone2")).sendKeys(getPhone2());
-    }
 }

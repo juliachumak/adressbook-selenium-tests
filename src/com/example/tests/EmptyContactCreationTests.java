@@ -6,11 +6,11 @@ public class EmptyContactCreationTests extends TestBase {
 
     @Test
     public void testEmptyContactCreation() throws Exception {
-        app.openMainPage();
-        app.initNewContactCreation();
+        app.getNavigationHelper().openMainPage();
+        app.getContactHelper().initNewContactCreation();
         ContactData contact = new ContactData("", "", "", "", "", "", "", "", "-", "-", "", "", "");
-        contact.fillContactForm();
-        app.submitContactForm();
-        app.returnToMainPage();
+        app.getContactHelper().fillContactForm(contact);
+        app.getContactHelper().submitContactForm();
+        app.getContactHelper().returnToMainPage();
     }
 }
