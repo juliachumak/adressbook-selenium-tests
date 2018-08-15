@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="197f12e5-601c-46e6-aaff-fa80b9f601ff" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/com/example/fw/GroupHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/fw/GroupHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/example/fw/HelperBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/fw/HelperBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/example/tests/EmptyContactCreationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/tests/EmptyContactCreationTests.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -44,22 +45,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ApplicationManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/fw/ApplicationManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="66" lean-forward="true" selection-start-line="20" selection-start-column="66" selection-end-line="20" selection-end-column="66" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ContactHelper.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/fw/ContactHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
+            <state relative-caret-position="90">
               <caret line="20" column="53" lean-forward="true" selection-start-line="20" selection-start-column="53" selection-end-line="20" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -70,7 +59,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GroupHelper.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GroupHelper.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/fw/GroupHelper.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
@@ -90,11 +79,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="EmptyContactCreationTests.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/example/tests/EmptyContactCreationTests.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="88" selection-start-line="10" selection-start-column="88" selection-end-line="10" selection-end-column="88" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="HelperBase.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/fw/HelperBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="42" column="13" lean-forward="true" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+            <state relative-caret-position="204">
+              <caret line="63" column="9" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1438#1439#0" expanded="true" />
@@ -168,7 +166,6 @@
         <option value="$PROJECT_DIR$/src/com/example/tests/ContactData.java" />
         <option value="$PROJECT_DIR$/src/com/example/fw/ApplicationManager.java" />
         <option value="$PROJECT_DIR$/src/com/example/tests/ContactCreationTests.java" />
-        <option value="$PROJECT_DIR$/src/com/example/tests/EmptyContactCreationTests.java" />
         <option value="$PROJECT_DIR$/src/com/example/tests/EmptyGroupCreationTests.java" />
         <option value="$PROJECT_DIR$/src/com/example/tests/GroupCreationTests.java" />
         <option value="$PROJECT_DIR$/src/com/example/fw/ContactHelper.java" />
@@ -177,6 +174,7 @@
         <option value="$PROJECT_DIR$/src/com/example/fw/GroupHelper.java" />
         <option value="$PROJECT_DIR$/src/com/example/tests/GroupModificationTests.java" />
         <option value="$PROJECT_DIR$/src/com/example/fw/HelperBase.java" />
+        <option value="$PROJECT_DIR$/src/com/example/tests/EmptyContactCreationTests.java" />
       </list>
     </option>
   </component>
@@ -284,7 +282,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="TestNG.GroupModificationTests">
+  <component name="RunManager" selected="TestNG.EmptyContactCreationTests">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -304,7 +302,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="ContactCreationTests.testNonEmptyContactCreation" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="EmptyContactCreationTests" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
       <module name="adressbook-selenium-tests" />
       <extension name="coverage">
         <pattern>
@@ -316,10 +314,10 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="SUITE_NAME" />
       <option name="PACKAGE_NAME" value="com.example.tests" />
-      <option name="MAIN_CLASS_NAME" value="com.example.tests.ContactCreationTests" />
-      <option name="METHOD_NAME" value="testNonEmptyContactCreation" />
+      <option name="MAIN_CLASS_NAME" value="com.example.tests.EmptyContactCreationTests" />
+      <option name="METHOD_NAME" />
       <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="METHOD" />
+      <option name="TEST_OBJECT" value="CLASS" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
@@ -474,17 +472,17 @@
     <list>
       <item itemvalue="TestNG.GroupCreationTests" />
       <item itemvalue="TestNG.com.example" />
-      <item itemvalue="TestNG.ContactCreationTests.testNonEmptyContactCreation" />
       <item itemvalue="TestNG.GroupRemovalTests" />
       <item itemvalue="TestNG.GroupModificationTests" />
+      <item itemvalue="TestNG.EmptyContactCreationTests" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.EmptyContactCreationTests" />
         <item itemvalue="TestNG.GroupModificationTests" />
         <item itemvalue="TestNG.GroupRemovalTests" />
         <item itemvalue="TestNG.com.example" />
         <item itemvalue="TestNG.GroupCreationTests" />
-        <item itemvalue="TestNG.ContactCreationTests.testNonEmptyContactCreation" />
       </list>
     </recent_temporary>
   </component>
@@ -500,17 +498,11 @@
       <updated>1532965802820</updated>
       <workItem from="1532965807406" duration="3024000" />
       <workItem from="1532981555002" duration="5063000" />
-      <workItem from="1532986730861" duration="71360000" />
+      <workItem from="1532986730861" duration="71632000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="com_example - 2018.08.15 at 00h 54m 28s.xml">
-      <configuration name="com.example" configurationId="TestNG" />
-    </history-entry>
-    <history-entry file="com_example - 2018.08.15 at 01h 00m 34s.xml">
-      <configuration name="com.example" configurationId="TestNG" />
-    </history-entry>
     <history-entry file="com_example - 2018.08.15 at 01h 16m 46s.xml">
       <configuration name="com.example" configurationId="TestNG" />
     </history-entry>
@@ -535,9 +527,15 @@
     <history-entry file="GroupModificationTests - 2018.08.16 at 01h 17m 59s.xml">
       <configuration name="GroupModificationTests" configurationId="TestNG" />
     </history-entry>
+    <history-entry file="EmptyContactCreationTests - 2018.08.16 at 01h 26m 14s.xml">
+      <configuration name="EmptyContactCreationTests" configurationId="TestNG" />
+    </history-entry>
+    <history-entry file="EmptyContactCreationTests - 2018.08.16 at 01h 26m 54s.xml">
+      <configuration name="EmptyContactCreationTests" configurationId="TestNG" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79447000" />
+    <option name="totallyTimeSpent" value="79719000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="791" extended-state="6" />
@@ -826,13 +824,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/tests/EmptyContactCreationTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/tests/EmptyGroupCreationTests.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -846,18 +837,6 @@
           <caret line="20" column="66" lean-forward="true" selection-start-line="20" selection-start-column="66" selection-end-line="20" selection-end-column="66" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/fw/ContactHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="20" column="53" lean-forward="true" selection-start-line="20" selection-start-column="53" selection-end-line="20" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#241#242#0" expanded="true" />
-            <element signature="e#271#272#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -914,18 +893,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/fw/HelperBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="42" column="13" lean-forward="true" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1438#1439#0" expanded="true" />
-            <element signature="e#1489#1490#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/fw/GroupHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -941,6 +908,37 @@
             <element signature="e#1059#1060#0" expanded="true" />
             <element signature="e#1099#1100#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/fw/ContactHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="20" column="53" lean-forward="true" selection-start-line="20" selection-start-column="53" selection-end-line="20" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#241#242#0" expanded="true" />
+            <element signature="e#271#272#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/fw/HelperBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="63" column="9" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1438#1439#0" expanded="true" />
+            <element signature="e#1489#1490#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/tests/EmptyContactCreationTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="88" selection-start-line="10" selection-start-column="88" selection-end-line="10" selection-end-column="88" />
         </state>
       </provider>
     </entry>

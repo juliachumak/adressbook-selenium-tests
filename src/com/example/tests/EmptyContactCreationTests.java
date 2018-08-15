@@ -8,7 +8,7 @@ public class EmptyContactCreationTests extends TestBase {
     public void testEmptyContactCreation() throws Exception {
         app.getNavigationHelper().openMainPage();
         app.getContactHelper().initNewContactCreation();
-        ContactData contact = new ContactData("", "", "", "", "", "", "", "", "-", "-", "", "", "");
+        ContactData contact = new ContactData("", "", "", "", "", "", "", "", null, null, "", "", "");
         app.getContactHelper().fillContactForm(contact);
         app.getContactHelper().submitContactForm();
         app.getContactHelper().returnToMainPage();
