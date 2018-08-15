@@ -25,4 +25,22 @@ public class GroupHelper extends HelperBase{
     public void returnToGroupsPage() {
         click(By.linkText("group page"));
     }
+
+    public void deleteGroup(int index){
+        selectGroupByIndex(index);
+        click(By.name("delete"));
+    }
+
+    public void initGroupModidication(int index) {
+        selectGroupByIndex(index);
+        click(By.name("edit"));
+    }
+
+    public void selectGroupByIndex(int index) {
+        click(By.xpath("//input[@name='selected[]'][" + index + "]"));
+    }
+
+    public void submitGroupModification() {
+        click(By.name("update"));
+    }
 }
