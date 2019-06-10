@@ -3,6 +3,9 @@ package com.example.fw;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
+
+
 public abstract class HelperBase {
 
     protected ApplicationManager manager;
@@ -58,6 +61,8 @@ public abstract class HelperBase {
         driver.findElement(locator).click();
     }
 
+//    protected List<WebElement> findElements(By locator) { return driver.findElements(locator); }
+
     protected String getElementValue(By locator) {
         return driver.findElement(locator).getAttribute("value");
     }
@@ -67,5 +72,4 @@ public abstract class HelperBase {
             new Select(driver.findElement(locator)).selectByVisibleText(text);
         }
     }
-
 }

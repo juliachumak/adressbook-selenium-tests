@@ -2,13 +2,11 @@ package com.example.fw;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
 
-    public WebDriver driver;
-    public String baseUrl;
+    public WebDriver driver;    public String baseUrl;
 
     private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
@@ -31,7 +29,6 @@ public class ApplicationManager {
         }
         return navigationHelper;
     }
-
     public GroupHelper getGroupHelper(){
         if (groupHelper == null){
             groupHelper = new GroupHelper(this);
