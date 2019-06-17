@@ -3,8 +3,6 @@ package com.example.fw;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.List;
-
 
 public abstract class HelperBase {
 
