@@ -1,6 +1,8 @@
 package com.example.tests;
 
-public class ContactData {
+import java.util.Objects;
+
+public class ContactData implements Comparable<ContactData> {
     public String firstname;
     public String lastname;
     public String address;
@@ -87,4 +89,47 @@ public class ContactData {
         return phone2;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ContactData that = (ContactData) o;
+        return Objects.equals(firstname, that.firstname) &&
+                Objects.equals(lastname, that.lastname) &&
+                Objects.equals(address, that.address) &&
+                Objects.equals(home, that.home) &&
+                Objects.equals(mobile, that.mobile) &&
+                Objects.equals(work, that.work) &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(email2, that.email2) &&
+                Objects.equals(bday, that.bday) &&
+                Objects.equals(bmonth, that.bmonth) &&
+                Objects.equals(byear, that.byear) &&
+                Objects.equals(address2, that.address2) &&
+                Objects.equals(phone2, that.phone2);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(firstname, lastname, address, home, mobile, work, email, email2, bday, bmonth, byear, address2, phone2);
+    }
+
+    @Override
+    public String toString() {
+        return "ContactData{" +
+                "firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", email='" + email + '\'' +
+                ", home='" + home + '\'' +
+                '}';
+    }
+
+    @Override
+    public int compareTo(ContactData other) {
+        return this.lastname.toLowerCase().compareTo(other.lastname.toLowerCase()) +
+                this.firstname.toLowerCase().compareTo(other.firstname.toLowerCase()) +
+                        this.email.toLowerCase().compareTo(other.email.toLowerCase()) +
+                            this.home.toLowerCase().compareTo(other.home.toLowerCase());
+    }
 }

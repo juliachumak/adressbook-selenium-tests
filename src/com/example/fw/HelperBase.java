@@ -59,11 +59,14 @@ public abstract class HelperBase {
         driver.findElement(locator).click();
     }
 
-//    protected List<WebElement> findElements(By locator) { return driver.findElements(locator); }
+    protected String getText(By locator){
+        return driver.findElement(locator).getText();
+    }
 
     protected String getElementValue(By locator) {
         return driver.findElement(locator).getAttribute("value");
     }
+
 
     protected void selectByText(By locator, String text) {
         if (text != null) {

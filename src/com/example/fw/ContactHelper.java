@@ -2,6 +2,11 @@ package com.example.fw;
 
 import com.example.tests.ContactData;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class ContactHelper extends HelperBase{
     public ContactHelper(ApplicationManager manager) {
@@ -40,13 +45,13 @@ public class ContactHelper extends HelperBase{
         click(By.xpath("(//input[@id])[" + index + "]"));
     }
 
-    public String getContactValue(int index) {
-      String contactValue = getElementValue(By.xpath("(//input[@id])[" + index + "]"));
-      return contactValue;
-    }
+//    public String getContactValue(int index) {
+//      String contactValue = getElementValue(By.xpath("(//input[@id])[" + index + "]"));
+//      return contactValue;
+//    }
 
     public void initContactModification(int index) {
-        click(By.xpath("//a[@href='edit.php?id=" + getContactValue(index) + "']"));
+        click(By.xpath("//a[@href='edit.php?id=" + index + "']"));
     }
 
     public void submitContactModification() {
@@ -56,4 +61,54 @@ public class ContactHelper extends HelperBase{
     public void deleteContact() {
         click(By.xpath("//input[@value='Delete']"));
     }
+
+    public String getCellText (int index, List<WebElement> rowCells){
+        String text = rowCells.get(index).getText();
+
+        if (text == null){
+            text = "";
+        }
+        return text;
+    }
+
+    public ContactData getContactDataFromTableRow(WebElement tableRow){
+        List<WebElement> rowCells = tableRow.findElements(By.tagName("td"));
+        ContactData contact = new ContactData();
+
+        contact.lastname = getCellText(1, rowCells);
+        contact.firstname = getCellText(2, rowCells);
+        contact.email = getCellText(3, rowCells);
+        contact.home = getCellText(4, rowCells);
+
+        return contact;
+    }
+
+    public int getContactIndexFromTableRow(WebElement tableRow){
+        List<WebElement> rowCells = tableRow.findElements(By.tagName("td"));
+        int contactIndex = Integer.valueOf(rowCells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+        return contactIndex;
+    }
+
+    public HashMap<Integer, ContactData> createContactsHashMap(){
+        HashMap<Integer, ContactData> contacts = new HashMap<>();
+        List<WebElement> tableRows = driver.findElements(By.name("entry"));
+        for (WebElement tableRow : tableRows) {
+            contacts.put(getContactIndexFromTableRow(tableRow), getContactDataFromTableRow(tableRow));
+            System.out.println(getContactIndexFromTableRow(tableRow));
+        }
+
+        return contacts;
+    }
+
+    public ArrayList<ContactData> createContactsList(){
+        ArrayList<ContactData> contacts = new ArrayList<>();
+        List<WebElement> tableRows = driver.findElements(By.name("entry"));
+        for (WebElement tableRow : tableRows) {
+            contacts.add(getContactDataFromTableRow(tableRow));
+        }
+
+        return contacts;
+    }
+
+
 }
