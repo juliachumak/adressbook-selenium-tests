@@ -4,9 +4,11 @@ import com.example.tests.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 public class ContactHelper extends HelperBase{
     public ContactHelper(ApplicationManager manager) {
@@ -89,6 +91,25 @@ public class ContactHelper extends HelperBase{
         return contactIndex;
     }
 
+    public List<Integer> getContactIndexesList(){
+        List<Integer> contactIndexesList = new ArrayList<>();
+        List<WebElement> tableRows = driver.findElements(By.name("entry"));
+        for (WebElement tableRow : tableRows) {
+            contactIndexesList.add(getContactIndexFromTableRow(tableRow));
+        }
+        System.out.println(contactIndexesList);
+        return contactIndexesList;
+    }
+
+    public int getRandomContactIndexFromContactsHashMap(HashMap<Integer, ContactData> contactsHashMap){
+        Random rnd = new Random();
+        List<Integer> contactIndexes = new ArrayList<>(contactsHashMap.keySet());
+        System.out.println(contactIndexes);
+        int contactIndex = contactIndexes.get(rnd.nextInt(contactIndexes.size() - 1));
+        System.out.println("!!!!!RANDOM CONTACT INDEX = " + contactIndex);
+        return contactIndex;
+    }
+
     public HashMap<Integer, ContactData> createContactsHashMap(){
         HashMap<Integer, ContactData> contacts = new HashMap<>();
         List<WebElement> tableRows = driver.findElements(By.name("entry"));
@@ -99,6 +120,7 @@ public class ContactHelper extends HelperBase{
 
         return contacts;
     }
+
 
     public ArrayList<ContactData> createContactsList(){
         ArrayList<ContactData> contacts = new ArrayList<>();

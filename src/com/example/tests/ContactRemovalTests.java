@@ -2,7 +2,10 @@ package com.example.tests;
 
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 import static org.testng.Assert.assertEquals;
 
@@ -17,7 +20,7 @@ public class ContactRemovalTests extends TestBase {
         HashMap<Integer, ContactData> oldList = app.getContactHelper().createContactsHashMap();
 
         //actions
-        int contactIndex = 133;
+        int contactIndex = app.getContactHelper().getRandomContactIndexFromContactsHashMap(oldList);
         app.getContactHelper().initContactModification(contactIndex);
         app.getContactHelper().deleteContact();
         app.getContactHelper().returnToMainPage();

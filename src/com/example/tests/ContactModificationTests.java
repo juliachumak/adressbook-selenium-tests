@@ -9,19 +9,17 @@ import static org.testng.Assert.assertEquals;
 public class ContactModificationTests extends TestBase {
 
 
-    @Test
-    public void modifySomeContact(){
+    @Test (dataProvider = "randomValidContactGenerator")
+    public void testContactModificationWithValidData(ContactData contact) throws Exception{
         app.getNavigationHelper().openMainPage();
 
         //save old state
-
         HashMap<Integer, ContactData> oldList = app.getContactHelper().createContactsHashMap();
 
         //actions
-        int contactIndex = 86;
+        int contactIndex = app.getContactHelper().getRandomContactIndexFromContactsHashMap(oldList);
+        System.out.println(oldList.get(contactIndex).firstname + " " + oldList.get(contactIndex).lastname + " " + oldList.get(contactIndex).email);
         app.getContactHelper().initContactModification(contactIndex);
-        ContactData contact = new ContactData();
-        contact.firstname = "EditedName";
         app.getContactHelper().fillContactForm(contact);
         app.getContactHelper().submitContactModification();
         app.getContactHelper().returnToMainPage();
@@ -29,7 +27,7 @@ public class ContactModificationTests extends TestBase {
         //save new state
 
         HashMap<Integer, ContactData> newList = app.getContactHelper().createContactsHashMap();
-
+        System.out.println(contact.firstname + " " + contact.lastname + " " + contact.email);
         //compare states
         assertEquals(newList.size(), oldList.size());
 

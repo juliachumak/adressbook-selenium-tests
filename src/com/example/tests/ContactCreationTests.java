@@ -9,30 +9,15 @@ import static org.testng.Assert.assertEquals;
 
 public class ContactCreationTests extends TestBase {
 
-    @Test
-    public void testNonEmptyContactCreation() throws Exception {
+    @Test (dataProvider = "randomValidContactGenerator")
+    public void testContactCreationWithValidData(ContactData contact) throws Exception {
         app.getNavigationHelper().openMainPage();
 
         //save old state
-
         ArrayList<ContactData> oldList = app.getContactHelper().createContactsList();
 
         //actions
         app.getContactHelper().initNewContactCreation();
-        ContactData contact = new ContactData();
-        contact.firstname = "test first name";
-        contact.lastname = "test last name";
-        contact.address = "test address";
-        contact.home = "0000000";
-        contact.mobile = "0987654321";
-        contact.work = "1111111";
-        contact.email = "test@email.com";
-        contact.email2 = "test@email2.com";
-        contact.bday = "1";
-        contact.bmonth = "January";
-        contact.byear = "1990";
-        contact.address2 = "test secondary address";
-        contact.phone2 = "2222222";
         app.getContactHelper().fillContactForm(contact);
         app.getContactHelper().submitContactForm();
         app.getContactHelper().returnToMainPage();
