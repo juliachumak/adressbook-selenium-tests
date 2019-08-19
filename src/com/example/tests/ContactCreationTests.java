@@ -1,10 +1,8 @@
 package com.example.tests;
 
 import org.testng.annotations.*;
-
 import java.util.ArrayList;
 import java.util.Collections;
-
 import static org.testng.Assert.assertEquals;
 
 public class ContactCreationTests extends TestBase {
@@ -23,18 +21,20 @@ public class ContactCreationTests extends TestBase {
         app.getContactHelper().returnToMainPage();
 
         //save new state
-
         ArrayList<ContactData> newList = app.getContactHelper().createContactsList();
 
         //compare states
         assertEquals(newList.size(), oldList.size() + 1);
 
-        ContactData newContact = new ContactData();
-        newContact.email = contact.email;
-        newContact.lastname = contact.lastname;
-        newContact.firstname = contact.firstname;
-        newContact.home = contact.home;
-        oldList.add(newContact);
+        for (ContactData contactData : newList) {
+            if ((contactData.firstname.equalsIgnoreCase(contact.firstname) == true) && (contactData.lastname.equalsIgnoreCase(contact.lastname) == true) &&
+                    (contactData.email.equalsIgnoreCase(app.getContactHelper().getDisplayedPEmail(contact)) == true) &&
+                    (contactData.home.equalsIgnoreCase(app.getContactHelper().getDisplayedPhone(contact)) == true)) {
+                newList.remove(contactData);
+                return;
+            }
+        }
+
         Collections.sort(oldList);
         Collections.sort(newList);
         assertEquals(oldList, newList);

@@ -3,10 +3,7 @@ package com.example.fw;
 import com.example.tests.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import javax.swing.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -20,6 +17,7 @@ public class ContactHelper extends HelperBase{
     }
 
     public void fillContactForm(ContactData contact) {
+
         type(By.name("firstname"), contact.getFirstname());
         type(By.name("lastname"), contact.getLastname());
         type(By.name("address"), contact.getAddress());
@@ -47,11 +45,6 @@ public class ContactHelper extends HelperBase{
         click(By.xpath("(//input[@id])[" + index + "]"));
     }
 
-//    public String getContactValue(int index) {
-//      String contactValue = getElementValue(By.xpath("(//input[@id])[" + index + "]"));
-//      return contactValue;
-//    }
-
     public void initContactModification(int index) {
         click(By.xpath("//a[@href='edit.php?id=" + index + "']"));
     }
@@ -76,7 +69,7 @@ public class ContactHelper extends HelperBase{
     public ContactData getContactDataFromTableRow(WebElement tableRow){
         List<WebElement> rowCells = tableRow.findElements(By.tagName("td"));
         ContactData contact = new ContactData();
-
+        contact.contactId = getContactIndexFromTableRow(tableRow);
         contact.lastname = getCellText(1, rowCells);
         contact.firstname = getCellText(2, rowCells);
         contact.email = getCellText(3, rowCells);
@@ -97,30 +90,16 @@ public class ContactHelper extends HelperBase{
         for (WebElement tableRow : tableRows) {
             contactIndexesList.add(getContactIndexFromTableRow(tableRow));
         }
-        System.out.println(contactIndexesList);
+//        System.out.println(contactIndexesList);
         return contactIndexesList;
     }
 
-    public int getRandomContactIndexFromContactsHashMap(HashMap<Integer, ContactData> contactsHashMap){
+        public int getRandomContactIndexFromContactsList(List<Integer> contactIndexesList){
         Random rnd = new Random();
-        List<Integer> contactIndexes = new ArrayList<>(contactsHashMap.keySet());
-        System.out.println(contactIndexes);
-        int contactIndex = contactIndexes.get(rnd.nextInt(contactIndexes.size() - 1));
-        System.out.println("!!!!!RANDOM CONTACT INDEX = " + contactIndex);
+        int contactIndex = contactIndexesList.get(rnd.nextInt(contactIndexesList.size() - 1));
+//        System.out.println("!!!!!RANDOM CONTACT INDEX = " + contactIndex);
         return contactIndex;
     }
-
-    public HashMap<Integer, ContactData> createContactsHashMap(){
-        HashMap<Integer, ContactData> contacts = new HashMap<>();
-        List<WebElement> tableRows = driver.findElements(By.name("entry"));
-        for (WebElement tableRow : tableRows) {
-            contacts.put(getContactIndexFromTableRow(tableRow), getContactDataFromTableRow(tableRow));
-            System.out.println(getContactIndexFromTableRow(tableRow));
-        }
-
-        return contacts;
-    }
-
 
     public ArrayList<ContactData> createContactsList(){
         ArrayList<ContactData> contacts = new ArrayList<>();
@@ -132,5 +111,39 @@ public class ContactHelper extends HelperBase{
         return contacts;
     }
 
+    public ContactData findContactInListById(ArrayList<ContactData> contactsList, int contactId){
+        for (ContactData contactData : contactsList) {
+            if (contactData.contactId == contactId){
+                return contactData;
+            }
+        }
+        return null;
+    }
+
+    public String getDisplayedPhone(ContactData contact){
+        String phone;
+        if (contact.home != ""){
+            phone = contact.home;
+        } else if (contact.mobile != ""){
+            phone = contact.mobile;
+        } else if (contact.work != ""){
+            phone = contact.work;
+        } else {
+            phone = "";
+        }
+        return phone;
+    }
+
+    public String getDisplayedPEmail(ContactData contact){
+        String email;
+        if (contact.email != ""){
+            email = contact.email;
+        } else if (contact.email2 != ""){
+            email = contact.email2;
+        } else {
+            email = "";
+        }
+        return email;
+    }
 
 }

@@ -45,7 +45,6 @@ public class GroupData implements Comparable<GroupData>{
 
     @Override
     public int hashCode() {
-
         return Objects.hash(name);
     }
 
