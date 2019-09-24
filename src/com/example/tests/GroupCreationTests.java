@@ -10,23 +10,20 @@ public class GroupCreationTests extends TestBase {
 
     @Test (dataProvider = "randomValidGroupGenerator")
     public void testGroupCreationWithValidData(GroupData group) throws Exception {
-        app.getNavigationHelper().openMainPage();
-        app.getNavigationHelper().gotoGroupsPage();
 
         //save old state
-        List<GroupData> oldList = app.getGroupHelper().getGroups();
+        List<GroupData> oldList = app.getGroupHelper().getGroupsList();
+//        System.out.println("oldList is " + oldList.size());
 
         //actions
-        app.getGroupHelper().initNewGroupCreation();
-        app.getGroupHelper().fillGroupForm(group);
-        app.getGroupHelper().submitGroupCreation();
-        app.getGroupHelper().returnToGroupsPage();
+        app.getGroupHelper().createGroup(group);
 
         //save new state
-        List<GroupData> newList = app.getGroupHelper().getGroups();
+        List<GroupData> newList = app.getGroupHelper().getGroupsList();
+//        System.out.println("newList is " + newList.size());
 
         //compare states
-        assertEquals(newList.size(), oldList.size() + 1);
+//        assertEquals(newList.size(), oldList.size() + 1);
 
         oldList.add(group);
         Collections.sort(oldList);

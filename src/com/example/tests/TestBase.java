@@ -16,6 +16,7 @@ public class TestBase {
 
     public void setUp() throws Exception {
         app = new ApplicationManager();
+        app.navigateTo().mainPage();
     }
 
     @AfterSuite
@@ -28,15 +29,13 @@ public class TestBase {
         List<Object[]> list = new ArrayList<>();
 
         for (int i = 0; i < 3; i++) {
-            GroupData group = new GroupData();
-
-            group.name = generateRandomString();
-            group.header = generateRandomString();
-            group.footer = generateRandomString();
+            GroupData group = new GroupData()
+                    .withName(generateRandomString())
+                    .withHeader(generateRandomString())
+                    .withFooter(generateRandomString());
 
             list.add(new Object[]{group});
         }
-
         return list.iterator();
     }
 
@@ -44,26 +43,24 @@ public class TestBase {
     public Iterator<Object[]> randomValidContactGenerator(){
         List<Object[]> list = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
-            ContactData contact = new ContactData();
-
-            contact.firstname = generateRandomString();
-            contact.lastname = generateRandomString();
-            contact.address = generateRandomString();
-            contact.home = generateRandomNumber();
-            contact.mobile = generateRandomNumber();
-            contact.work = generateRandomNumber();
-            contact.email = generateRandomEmail();
-            contact.email2 = generateRandomEmail();
-            contact.bday = generateRandomDate();
-            contact.bmonth = generateRandomMonth();
-            contact.byear = generateRandomYear();
-            contact.address2 = generateRandomString();
-            contact.phone2 = generateRandomNumber();
+            ContactData contact = new ContactData()
+                    .withFirstname(generateRandomString())
+                    .withLastname(generateRandomString())
+                    .withAddress(generateRandomString())
+                    .withHome(generateRandomNumber())
+                    .withMobile(generateRandomNumber())
+                    .withWork(generateRandomNumber())
+                    .withEmail(generateRandomEmail())
+                    .withEmail2(generateRandomEmail())
+                    .withBday(generateRandomDate())
+                    .withBmonth(generateRandomMonth())
+                    .withByear(generateRandomYear())
+                    .withAddress2(generateRandomString())
+                    .withPhone2(generateRandomNumber());
 
             list.add(new Object[]{contact});
         }
         return list.iterator();
-
     }
 
     public String generateRandomString(){
