@@ -1,39 +1,40 @@
 package com.example.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.*;
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+
 import static org.testng.Assert.assertEquals;
 
 public class ContactCreationTests extends TestBase {
 
     @Test (dataProvider = "randomValidContactGenerator")
     public void testContactCreationWithValidData(ContactData contact) throws Exception {
-        app.getNavigationHelper().openMainPage();
 
         //save old state
-        ArrayList<ContactData> oldList = app.getContactHelper().createContactsList();
+        List<ContactData> oldList = app.getContactHelper().getContactsList();
 
         //actions
-        app.getContactHelper().initNewContactCreation();
-        app.getContactHelper().fillContactForm(contact);
-        app.getContactHelper().submitContactForm();
-        app.getContactHelper().returnToMainPage();
+        app.getContactHelper().createContact(contact);
 
         //save new state
-        ArrayList<ContactData> newList = app.getContactHelper().createContactsList();
+        List<ContactData> newList = app.getContactHelper().getContactsList();
+        app.getContactHelper().clearContactsList();
 
         //compare states
-        assertEquals(newList.size(), oldList.size() + 1);
-
+        boolean matchingContactExists = false;
         for (ContactData contactData : newList) {
-            if ((contactData.firstname.equalsIgnoreCase(contact.firstname) == true) && (contactData.lastname.equalsIgnoreCase(contact.lastname) == true) &&
-                    (contactData.email.equalsIgnoreCase(app.getContactHelper().getDisplayedPEmail(contact)) == true) &&
-                    (contactData.home.equalsIgnoreCase(app.getContactHelper().getDisplayedPhone(contact)) == true)) {
+            if ((contactData.getFirstname().equalsIgnoreCase(contact.getFirstname()) == true) &&
+                    (contactData.getLastname().equalsIgnoreCase(contact.getLastname()) == true) &&
+                    (contactData.getEmail().equalsIgnoreCase(app.getContactHelper().getDisplayedPEmail(contact)) == true) &&
+                    (contactData.getHome().equalsIgnoreCase(app.getContactHelper().getDisplayedPhone(contact)) == true)) {
                 newList.remove(contactData);
-                return;
+                matchingContactExists = true;
+                break;
             }
         }
+        Assert.assertTrue(matchingContactExists, "Added contact is not found in list");
 
         Collections.sort(oldList);
         Collections.sort(newList);

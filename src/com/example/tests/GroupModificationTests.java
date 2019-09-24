@@ -12,25 +12,20 @@ public class GroupModificationTests extends TestBase {
 
     @Test (dataProvider = "randomValidGroupGenerator")
     public void modifySomeGroup(GroupData group){
-        app.getNavigationHelper().openMainPage();
-        app.getNavigationHelper().gotoGroupsPage();
 
         //save old state
-        List<GroupData> oldList = app.getGroupHelper().getGroups();
+        List<GroupData> oldList = app.getGroupHelper().getGroupsList();
 
         //actions
         Random rnd = new Random();
         int groupIndex = rnd.nextInt(oldList.size() - 1);
-        app.getGroupHelper().initGroupModification(groupIndex);
-        app.getGroupHelper().fillGroupForm(group);
-        app.getGroupHelper().submitGroupModification();
-        app.getGroupHelper().returnToGroupsPage();
+        app.getGroupHelper().modifyGroup(groupIndex, group);
 
         //save new state
-        List<GroupData> newList = app.getGroupHelper().getGroups();
+        List<GroupData> newList = app.getGroupHelper().getGroupsList();
 
         //compare states
-        assertEquals(newList.size(), oldList.size());
+//        assertEquals(newList.size(), oldList.size());
 
         oldList.remove(groupIndex);
         oldList.add(group);
