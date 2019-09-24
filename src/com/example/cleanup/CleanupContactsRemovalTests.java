@@ -8,15 +8,19 @@ public class CleanupContactsRemovalTests extends TestBase {
 
     @Test
     public void deleteSomeContact(){
+        app.getNavigationHelper().openMainPage();
 
         //save old state
         List<Integer> oldList = app.getContactHelper().getContactIndexesList();
 
         //actions
-        while (oldList.size() > 5){
+        while (oldList.size() > 10){
             int contactIndex = app.getContactHelper().getRandomContactIndexFromContactsList(oldList);
-            app.getContactHelper().deleteContact(contactIndex);
+            app.getContactHelper().initContactModification(contactIndex);
+            app.getContactHelper().deleteContact();
+            app.getContactHelper().returnToMainPage();
             oldList.remove(new Integer(contactIndex));
+            System.out.println(oldList.size());
         }
 
     }

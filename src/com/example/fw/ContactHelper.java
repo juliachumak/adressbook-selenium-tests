@@ -12,67 +12,12 @@ public class ContactHelper extends HelperBase{
         super(manager);
     }
 
-    private List<ContactData> cachedContactsList;
-
-    public void clearContactsList(){
-        cachedContactsList = null;
-    }
-
-    public List<ContactData> getContactsList(){
-        if (cachedContactsList == null){
-            rebuildContactsCache();
-        }
-        return cachedContactsList;
-    }
-
-    private void rebuildContactsCache() {
-        manager.navigateTo().mainPage();
-        cachedContactsList = new ArrayList<>();
-        List<WebElement> tableRows = driver.findElements(By.name("entry"));
-        for (WebElement tableRow : tableRows) {
-            cachedContactsList.add(getContactDataFromTableRow(tableRow));
-        }
-    }
-
-    public ContactHelper createContact(ContactData contact) {
-        initNewContactCreation();
-        fillContactForm(contact);
-        submitContactCreation();
-        returnToMainPage();
-//        click(By.linkText("home"));
-//        cachedContactsList = null;
-        rebuildContactsCache();
-        return this;
-    }
-
-    public ContactHelper modifyContact(int index, ContactData contact) {
-        initContactModification(index);
-        fillContactForm(contact);
-        submitContactModification();
-        returnToMainPage();
-//        click(By.linkText("home"));
-//        cachedContactsList = null;
-        rebuildContactsCache();
-        return this;
-    }
-
-    public ContactHelper deleteContact(int index) {
-        initContactModification(index);
-        submitContactDeletion();
-        returnToMainPage();
-        rebuildContactsCache();
-        return this;
-    }
-
-    //------------------------------------------------------------------------------------------------------------
-
-    public ContactHelper initNewContactCreation() {
-        manager.navigateTo().mainPage();
+    public void initNewContactCreation() {
         click(By.linkText("add new"));
-        return this;
     }
 
-    public ContactHelper fillContactForm(ContactData contact) {
+    public void fillContactForm(ContactData contact) {
+
         type(By.name("firstname"), contact.getFirstname());
         type(By.name("lastname"), contact.getLastname());
         type(By.name("address"), contact.getAddress());
@@ -86,35 +31,30 @@ public class ContactHelper extends HelperBase{
         type(By.name("byear"), contact.getByear());
         type(By.name("address2"), contact.getAddress2());
         type(By.name("phone2"), contact.getPhone2());
-        return this;
     }
 
-    public ContactHelper submitContactCreation() {
+    public void submitContactForm() {
         click(By.name("submit"));
-        cachedContactsList = null;
-        return this;
     }
 
-    public ContactHelper returnToMainPage() {
+    public void returnToMainPage() {
         click(By.linkText("home page"));
-        return this;
     }
 
-    public ContactHelper selectContactByIndex(int index) {
+    public void selectContactByIndex(int index) {
         click(By.xpath("(//input[@id])[" + index + "]"));
-        return this;
     }
 
-    public ContactHelper initContactModification(int index) {
-        manager.navigateTo().mainPage();
+    public void initContactModification(int index) {
         click(By.xpath("//a[@href='edit.php?id=" + index + "']"));
-        return this;
     }
 
-    public ContactHelper submitContactModification() {
+    public void submitContactModification() {
         click(By.xpath("//input[@value='Update']"));
-        cachedContactsList = null;
-        return this;
+    }
+
+    public void deleteContact() {
+        click(By.xpath("//input[@value='Delete']"));
     }
 
     public String getCellText (int index, List<WebElement> rowCells){
@@ -127,44 +67,53 @@ public class ContactHelper extends HelperBase{
     }
 
     public ContactData getContactDataFromTableRow(WebElement tableRow){
-        manager.navigateTo().mainPage();
         List<WebElement> rowCells = tableRow.findElements(By.tagName("td"));
-        ContactData contact = new ContactData()
-                .withContactId(getContactIndexFromTableRow(tableRow))
-                .withLastname(getCellText(1, rowCells))
-                .withFirstname(getCellText(2, rowCells))
-                .withEmail(getCellText(3, rowCells))
-                .withHome(getCellText(4, rowCells));
+        ContactData contact = new ContactData();
+        contact.contactId = getContactIndexFromTableRow(tableRow);
+        contact.lastname = getCellText(1, rowCells);
+        contact.firstname = getCellText(2, rowCells);
+        contact.email = getCellText(3, rowCells);
+        contact.home = getCellText(4, rowCells);
 
         return contact;
     }
 
     public int getContactIndexFromTableRow(WebElement tableRow){
-        manager.navigateTo().mainPage();
         List<WebElement> rowCells = tableRow.findElements(By.tagName("td"));
         int contactIndex = Integer.valueOf(rowCells.get(0).findElement(By.tagName("input")).getAttribute("value"));
         return contactIndex;
     }
 
     public List<Integer> getContactIndexesList(){
-        manager.navigateTo().mainPage();
         List<Integer> contactIndexesList = new ArrayList<>();
         List<WebElement> tableRows = driver.findElements(By.name("entry"));
         for (WebElement tableRow : tableRows) {
             contactIndexesList.add(getContactIndexFromTableRow(tableRow));
         }
+//        System.out.println(contactIndexesList);
         return contactIndexesList;
     }
 
         public int getRandomContactIndexFromContactsList(List<Integer> contactIndexesList){
         Random rnd = new Random();
         int contactIndex = contactIndexesList.get(rnd.nextInt(contactIndexesList.size() - 1));
+//        System.out.println("!!!!!RANDOM CONTACT INDEX = " + contactIndex);
         return contactIndex;
     }
 
-    public ContactData findContactInListById(List<ContactData> contactsList, int contactId){
+    public ArrayList<ContactData> createContactsList(){
+        ArrayList<ContactData> contacts = new ArrayList<>();
+        List<WebElement> tableRows = driver.findElements(By.name("entry"));
+        for (WebElement tableRow : tableRows) {
+            contacts.add(getContactDataFromTableRow(tableRow));
+        }
+
+        return contacts;
+    }
+
+    public ContactData findContactInListById(ArrayList<ContactData> contactsList, int contactId){
         for (ContactData contactData : contactsList) {
-            if (contactData.getContactId() == contactId){
+            if (contactData.contactId == contactId){
                 return contactData;
             }
         }
@@ -173,12 +122,12 @@ public class ContactHelper extends HelperBase{
 
     public String getDisplayedPhone(ContactData contact){
         String phone;
-        if (contact.getHome() != ""){
-            phone = contact.getHome();
-        } else if (contact.getMobile() != ""){
-            phone = contact.getMobile();
-        } else if (contact.getWork() != ""){
-            phone = contact.getWork();
+        if (contact.home != ""){
+            phone = contact.home;
+        } else if (contact.mobile != ""){
+            phone = contact.mobile;
+        } else if (contact.work != ""){
+            phone = contact.work;
         } else {
             phone = "";
         }
@@ -187,19 +136,14 @@ public class ContactHelper extends HelperBase{
 
     public String getDisplayedPEmail(ContactData contact){
         String email;
-        if (contact.getEmail() != ""){
-            email = contact.getEmail();
-        } else if (contact.getEmail2() != ""){
-            email = contact.getEmail2();
+        if (contact.email != ""){
+            email = contact.email;
+        } else if (contact.email2 != ""){
+            email = contact.email2;
         } else {
             email = "";
         }
         return email;
     }
 
-    public ContactHelper submitContactDeletion() {
-        click(By.xpath("//input[@value='Delete']"));
-        cachedContactsList = null;
-        return this;
-    }
 }
