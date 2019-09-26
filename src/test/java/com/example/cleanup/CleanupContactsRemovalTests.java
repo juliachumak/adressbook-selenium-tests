@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CleanupContactsRemovalTests extends TestBase {
 
-    @Test
+    @Test (groups = {"cleanup"}, priority = 0)
     public void deleteSomeContact(){
 
         //save old state

@@ -8,7 +8,7 @@ import static org.testng.Assert.assertEquals;
 
 public class GroupCreationTests extends TestBase {
 
-    @Test (dataProvider = "randomValidGroupGenerator")
+    @Test (dataProvider = "randomValidGroupGenerator", groups = {"groups_testing", "creation"}, priority = 0)
     public void testGroupCreationWithValidData(GroupData group) throws Exception {
 
         //save old state

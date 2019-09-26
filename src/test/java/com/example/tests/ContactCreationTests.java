@@ -9,7 +9,7 @@ import static org.testng.Assert.assertEquals;
 
 public class ContactCreationTests extends TestBase {
 
-    @Test (dataProvider = "randomValidContactGenerator")
+    @Test (dataProvider = "randomValidContactGenerator", groups = {"contacts_testing", "creation"}, priority = 3)
     public void testContactCreationWithValidData(ContactData contact) throws Exception {
 
         //save old state

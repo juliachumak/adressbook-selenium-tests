@@ -12,14 +12,14 @@ public class TestBase {
 
     protected static ApplicationManager app;
 
-    @BeforeSuite
+    @BeforeSuite (alwaysRun = true)
 
     public void setUp() throws Exception {
         app = new ApplicationManager();
         app.navigateTo().mainPage();
     }
 
-    @AfterSuite
+    @AfterSuite (alwaysRun = true)
     public void tearDown() throws Exception {
         app.stop();
     }

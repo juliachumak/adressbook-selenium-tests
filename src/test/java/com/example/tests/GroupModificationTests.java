@@ -10,7 +10,7 @@ import static org.testng.Assert.assertEquals;
 
 public class GroupModificationTests extends TestBase {
 
-    @Test (dataProvider = "randomValidGroupGenerator")
+    @Test (dataProvider = "randomValidGroupGenerator", groups = {"groups_testing", "modification"}, priority = 1)
     public void modifySomeGroup(GroupData group){
 
         //save old state

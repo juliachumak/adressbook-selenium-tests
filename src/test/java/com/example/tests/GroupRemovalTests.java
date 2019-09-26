@@ -10,7 +10,7 @@ import static org.testng.Assert.assertEquals;
 
 public class GroupRemovalTests extends TestBase {
 
-    @Test
+    @Test (groups = {"groups_testing", "deletion"}, priority = 2)
     public void deleteSomeGroup(){
 
         //save old state

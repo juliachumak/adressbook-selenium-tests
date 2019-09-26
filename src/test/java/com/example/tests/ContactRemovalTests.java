@@ -7,7 +7,7 @@ import static org.testng.Assert.assertEquals;
 
 public class ContactRemovalTests extends TestBase {
 
-    @Test
+    @Test (groups = {"contacts_testing", "deletion"}, priority = 5)
     public void deleteSomeContact(){
 
         //save old state

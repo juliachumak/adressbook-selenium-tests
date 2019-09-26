@@ -8,7 +8,7 @@ import static org.testng.Assert.assertEquals;
 public class ContactModificationTests extends TestBase {
 
 
-    @Test (dataProvider = "randomValidContactGenerator")
+    @Test (dataProvider = "randomValidContactGenerator", groups = {"contacts_testing", "modification"}, priority = 4)
     public void testContactModificationWithValidData(ContactData contact) throws Exception{
 
         //save old state

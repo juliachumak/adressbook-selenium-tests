@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class CleanupGroupsRemovalTests extends TestBase {
 
-    @Test
+    @Test (groups = {"cleanup"}, priority = 1)
     public void deleteSomeGroup(){
 
         //save old state
