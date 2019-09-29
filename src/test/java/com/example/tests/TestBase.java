@@ -2,6 +2,8 @@ package com.example.tests;
 import com.example.fw.ApplicationManager;
 import org.testng.annotations.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -22,6 +24,23 @@ public class TestBase {
     @AfterSuite (alwaysRun = true)
     public void tearDown() throws Exception {
         app.stop();
+        Runtime.getRuntime().
+                exec("cmd /c start \"\" generateReport.bat");
+//        try{
+//            Process p = Runtime.getRuntime().exec("D:/Users/jchumak/Desktop/Automation/adressbook-selenium-tests/generateReport.bat");
+//            p.waitFor();
+//
+//        }catch( IOException ex ){
+//            //Validate the case the file can't be accessed (not enough permissions)
+//
+//        }catch( InterruptedException ex ){
+//            //Validate the case the process is being stopped by some external situation
+//
+//        }
+////        ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "generateReport.bat");
+////        File dir = new File("D:/Users/jchumak/Desktop/Automation/adressbook-selenium-tests");
+////        pb.directory(dir);
+////        Process p = pb.start();
     }
 
     @DataProvider

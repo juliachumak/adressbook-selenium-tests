@@ -1,6 +1,8 @@
 package com.example.fw;
 
 import com.example.tests.ContactData;
+import io.qameta.allure.Step;
+import io.qameta.allure.Story;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
@@ -34,6 +36,7 @@ public class ContactHelper extends HelperBase{
         }
     }
 
+    @Story("createContact")
     public ContactHelper createContact(ContactData contact) {
         initNewContactCreation();
         fillContactForm(contact);
@@ -45,6 +48,7 @@ public class ContactHelper extends HelperBase{
         return this;
     }
 
+    @Story("modifyContact")
     public ContactHelper modifyContact(int index, ContactData contact) {
         initContactModification(index);
         fillContactForm(contact);
@@ -56,6 +60,7 @@ public class ContactHelper extends HelperBase{
         return this;
     }
 
+    @Story("deleteContact")
     public ContactHelper deleteContact(int index) {
         initContactModification(index);
         submitContactDeletion();
@@ -66,12 +71,14 @@ public class ContactHelper extends HelperBase{
 
     //------------------------------------------------------------------------------------------------------------
 
+    @Step("initNewContactCreation")
     public ContactHelper initNewContactCreation() {
         manager.navigateTo().mainPage();
         click(By.linkText("add new"));
         return this;
     }
 
+    @Step("fillContactForm")
     public ContactHelper fillContactForm(ContactData contact) {
         type(By.name("firstname"), contact.getFirstname());
         type(By.name("lastname"), contact.getLastname());
@@ -89,28 +96,33 @@ public class ContactHelper extends HelperBase{
         return this;
     }
 
+    @Step("submitContactCreation")
     public ContactHelper submitContactCreation() {
         click(By.name("submit"));
         cachedContactsList = null;
         return this;
     }
 
+    @Step("returnToMainPage")
     public ContactHelper returnToMainPage() {
         click(By.linkText("home page"));
         return this;
     }
 
+    @Step("selectContactByIndex")
     public ContactHelper selectContactByIndex(int index) {
         click(By.xpath("(//input[@id])[" + index + "]"));
         return this;
     }
 
+    @Step("initContactModification")
     public ContactHelper initContactModification(int index) {
         manager.navigateTo().mainPage();
         click(By.xpath("//a[@href='edit.php?id=" + index + "']"));
         return this;
     }
 
+    @Step("submitContactModification")
     public ContactHelper submitContactModification() {
         click(By.xpath("//input[@value='Update']"));
         cachedContactsList = null;
@@ -126,6 +138,7 @@ public class ContactHelper extends HelperBase{
         return text;
     }
 
+//    @Step("getContactDataFromTableRow")
     public ContactData getContactDataFromTableRow(WebElement tableRow){
         manager.navigateTo().mainPage();
         List<WebElement> rowCells = tableRow.findElements(By.tagName("td"));
@@ -139,6 +152,7 @@ public class ContactHelper extends HelperBase{
         return contact;
     }
 
+//    @Step("getContactIndexFromTableRow")
     public int getContactIndexFromTableRow(WebElement tableRow){
         manager.navigateTo().mainPage();
         List<WebElement> rowCells = tableRow.findElements(By.tagName("td"));
@@ -146,6 +160,7 @@ public class ContactHelper extends HelperBase{
         return contactIndex;
     }
 
+//    @Step("getContactIndexesList")
     public List<Integer> getContactIndexesList(){
         manager.navigateTo().mainPage();
         List<Integer> contactIndexesList = new ArrayList<>();
@@ -156,12 +171,14 @@ public class ContactHelper extends HelperBase{
         return contactIndexesList;
     }
 
-        public int getRandomContactIndexFromContactsList(List<Integer> contactIndexesList){
+//    @Step("getRandomContactIndexFromContactsList")
+    public int getRandomContactIndexFromContactsList(List<Integer> contactIndexesList){
         Random rnd = new Random();
         int contactIndex = contactIndexesList.get(rnd.nextInt(contactIndexesList.size() - 1));
         return contactIndex;
     }
 
+//    @Step("findContactInListById")
     public ContactData findContactInListById(List<ContactData> contactsList, int contactId){
         for (ContactData contactData : contactsList) {
             if (contactData.getContactId() == contactId){
@@ -197,6 +214,7 @@ public class ContactHelper extends HelperBase{
         return email;
     }
 
+    @Step("submitContactDeletion")
     public ContactHelper submitContactDeletion() {
         click(By.xpath("//input[@value='Delete']"));
         cachedContactsList = null;

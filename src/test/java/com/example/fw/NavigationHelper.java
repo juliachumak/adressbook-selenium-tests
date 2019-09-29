@@ -1,5 +1,6 @@
 package com.example.fw;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class NavigationHelper extends HelperBase{
@@ -22,6 +23,7 @@ public class NavigationHelper extends HelperBase{
             return false;
     }
 
+    @Step ("Open Groups Page")
     public void groupsPage() {
         if (! onGroupsPage()){
             click(By.linkText("groups"));

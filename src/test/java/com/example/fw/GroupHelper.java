@@ -1,8 +1,11 @@
 package com.example.fw;
 
 import com.example.tests.GroupData;
+import io.qameta.allure.Story;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import io.qameta.allure.Step;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +38,7 @@ public class GroupHelper extends HelperBase{
         }
     }
 
+    @Story("createGroup")
     public GroupHelper createGroup(GroupData group) {
         manager.navigateTo().groupsPage();
         initNewGroupCreation();
@@ -45,6 +49,7 @@ public class GroupHelper extends HelperBase{
         return this;
     }
 
+    @Story("modifyGroup")
     public GroupHelper modifyGroup(int index, GroupData group){
         manager.navigateTo().groupsPage();
         initGroupModification(index);
@@ -55,6 +60,7 @@ public class GroupHelper extends HelperBase{
         return this;
     }
 
+    @Story("deleteGroup")
     public GroupHelper deleteGroup(int index){
         manager.navigateTo().groupsPage();
         selectGroupByIndex(index);
@@ -66,12 +72,14 @@ public class GroupHelper extends HelperBase{
 
     //------------------------------------------------------------------------------------------------------------
 
+    @Step("initNewGroupCreation")
     public GroupHelper initNewGroupCreation() {
         manager.navigateTo().groupsPage();
         click(By.name("new"));
         return this;
     }
 
+    @Step("fillGroupForm")
     public GroupHelper fillGroupForm(GroupData group) {
         type(By.name("group_name"), group.getName());
         type(By.name("group_header"), group.getHeader());
@@ -79,34 +87,40 @@ public class GroupHelper extends HelperBase{
         return this;
     }
 
+    @Step("submitGroupCreation")
     public GroupHelper submitGroupCreation() {
         click(By.name("submit"));
         cachedGroupsList = null;
         return this;
     }
 
+    @Step("returnToGroupsPage")
     public GroupHelper returnToGroupsPage() {
         click(By.linkText("group page"));
         return this;
     }
 
+    @Step("initGroupModification")
     public GroupHelper initGroupModification(int index) {
         selectGroupByIndex(index);
         click(By.name("edit"));
         return this;
     }
 
+    @Step("selectGroupByIndex")
     public GroupHelper selectGroupByIndex(int index) {
         click(By.xpath("//input[@name='selected[]'][" + Integer.valueOf(index + 1) + "]"));
         return this;
     }
 
+    @Step("submitGroupModification")
     public GroupHelper submitGroupModification() {
         click(By.name("update"));
         cachedGroupsList = null;
         return this;
     }
 
+    @Step("submitGroupDeletion")
     public GroupHelper submitGroupDeletion() {
         click(By.name("delete"));
         cachedGroupsList = null;

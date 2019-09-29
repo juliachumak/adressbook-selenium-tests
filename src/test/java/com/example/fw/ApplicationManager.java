@@ -13,7 +13,8 @@ public class ApplicationManager {
     private ContactHelper contactHelper;
 
     public ApplicationManager(){
-        System.setProperty("webdriver.gecko.driver","D:\\Users\\jchumak\\Desktop\\Automation\\geckodriver\\geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver",
+                "D:/Users/jchumak/Desktop/Automation/adressbook-selenium-tests/src/main/resources/drivers/geckodriver.exe");
         driver = new FirefoxDriver();
         baseUrl = "http://localhost/";
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);

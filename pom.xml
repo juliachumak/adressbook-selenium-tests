@@ -16,11 +16,15 @@
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
-            <version>LAST_VERSION</version>
-            <scope>test</scope>
+            <version>2.13.0</version>
+            <!--<scope>test</scope>-->
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-maven</artifactId>
+            <version>2.8</version>
         </dependency>
     </dependencies>
-
 
     <build>
         <plugins>
@@ -52,4 +56,21 @@
         </plugins>
     </build>
 
+    <reporting>
+        <excludeDefaults>true</excludeDefaults>
+        <plugins>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.8</version>
+                <configuration>
+                    <reportVersion>2.13.0</reportVersion>
+                    <reportDirectory>${project.build.directory}/reports</reportDirectory>
+                    <allureDownloadUrl>https://artifactory.getty.cloud/artifactory/getty-mms/tools/allure-2.8.1.zip
+                    </allureDownloadUrl>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </reporting>
 </project>
