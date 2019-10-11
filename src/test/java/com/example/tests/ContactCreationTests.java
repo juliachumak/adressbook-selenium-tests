@@ -1,5 +1,10 @@
 package com.example.tests;
 
+import com.example.common.core.PageBase;
+import com.example.common.core.TestBase;
+import com.example.common.data.ContactData;
+import com.example.common.pages.contacts.ContactsPage;
+import com.example.common.steps.ContactSteps;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import java.util.Collections;
@@ -13,22 +18,22 @@ public class ContactCreationTests extends TestBase {
     public void testContactCreationWithValidData(ContactData contact) throws Exception {
 
         //save old state
-        List<ContactData> oldList = app.getContactHelper().getContactsList();
+        ContactsPage page = new ContactsPage(driver, PageBase.contactsPageTitle).get();
+        List<ContactData> oldList = page.getContactsList();
 
         //actions
-        app.getContactHelper().createContact(contact);
+        new ContactSteps(driver).createContact(contact);
 
         //save new state
-        List<ContactData> newList = app.getContactHelper().getContactsList();
-        app.getContactHelper().clearContactsList();
+        List<ContactData> newList = page.getContactsList();
 
         //compare states
         boolean matchingContactExists = false;
         for (ContactData contactData : newList) {
-            if ((contactData.getFirstname().equalsIgnoreCase(contact.getFirstname()) == true) &&
-                    (contactData.getLastname().equalsIgnoreCase(contact.getLastname()) == true) &&
-                    (contactData.getEmail().equalsIgnoreCase(app.getContactHelper().getDisplayedPEmail(contact)) == true) &&
-                    (contactData.getHome().equalsIgnoreCase(app.getContactHelper().getDisplayedPhone(contact)) == true)) {
+            if ((contactData.getFirstname().equalsIgnoreCase(contact.getFirstname())) &&
+                    (contactData.getLastname().equalsIgnoreCase(contact.getLastname())) &&
+                    (contactData.getEmail().equalsIgnoreCase(page.getDisplayedEmail(contact))) &&
+                    (contactData.getHome().equalsIgnoreCase(page.getDisplayedPhone(contact)))) {
                 newList.remove(contactData);
                 matchingContactExists = true;
                 break;

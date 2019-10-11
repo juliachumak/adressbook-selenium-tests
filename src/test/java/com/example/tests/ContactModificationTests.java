@@ -1,4 +1,9 @@
 package com.example.tests;
+import com.example.common.core.PageBase;
+import com.example.common.core.TestBase;
+import com.example.common.data.ContactData;
+import com.example.common.pages.contacts.ContactsPage;
+import com.example.common.steps.ContactSteps;
 import org.testng.annotations.Test;
 import java.util.Collections;
 import java.util.List;
@@ -12,22 +17,23 @@ public class ContactModificationTests extends TestBase {
     public void testContactModificationWithValidData(ContactData contact) throws Exception{
 
         //save old state
-        List<ContactData> oldList = app.getContactHelper().getContactsList();
+        ContactsPage page = new ContactsPage(driver, PageBase.contactsPageTitle).get();
+        List<ContactData> oldList = page.getContactsList();
 
         //actions
-        int contactIndex = app.getContactHelper().getRandomContactIndexFromContactsList(app.getContactHelper().getContactIndexesList());
-        app.getContactHelper().modifyContact(contactIndex, contact);
+        int contactIndex = page.getRandomContactIndexFromContactsList(page.getContactIndexesList());
+        new ContactSteps(driver).modifyContact(contactIndex, contact);
 
         //save new state
-        List<ContactData> newList = app.getContactHelper().getContactsList();
+        List<ContactData> newList = page.getContactsList();
 
         //compare states
 //        assertEquals(newList.size(), oldList.size());
-        app.getContactHelper().findContactInListById(oldList, contactIndex)
+        page.findContactInListById(oldList, contactIndex)
                 .withFirstname(contact.getFirstname())
                 .withLastname(contact.getLastname())
-                .withHome(app.getContactHelper().getDisplayedPhone(contact))
-                .withEmail(app.getContactHelper().getDisplayedPEmail(contact));
+                .withHome(page.getDisplayedPhone(contact))
+                .withEmail(page.getDisplayedEmail(contact));
 
         Collections.sort(oldList);
         Collections.sort(newList);

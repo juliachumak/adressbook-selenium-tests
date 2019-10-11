@@ -1,10 +1,15 @@
 package com.example.tests;
 
+import com.example.common.core.PageBase;
+import com.example.common.core.TestBase;
+import com.example.common.data.GroupData;
+import com.example.common.pages.contacts.ContactsPage;
+import com.example.common.pages.groups.GroupsPage;
+import com.example.common.steps.GroupSteps;
 import org.testng.annotations.Test;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 import static org.testng.Assert.assertEquals;
 
@@ -14,20 +19,19 @@ public class GroupRemovalTests extends TestBase {
     public void deleteSomeGroup(){
 
         //save old state
-        List<GroupData> oldList = app.getGroupHelper().getGroupsList();
+        GroupsPage page = new ContactsPage(driver, PageBase.contactsPageTitle).get().openGroupsPage();
+        List<GroupData> oldList = page.getGroupsList();
 
         //actions
-        Random rnd = new Random();
-        int groupIndex = rnd.nextInt(oldList.size() - 1);
-        app.getGroupHelper().deleteGroup(groupIndex);
+        int groupIndex = page.getRandomGroupIndexFromGroupsList(page.getGroupIndexesList());
+        new GroupSteps(driver).deleteGroup(groupIndex);
 
         //save new state
-        List<GroupData> newList = app.getGroupHelper().getGroupsList();
+        List<GroupData> newList = page.getGroupsList();
 
         //compare states
-//        assertEquals(newList.size(), oldList.size() - 1);
-
-        oldList.remove(groupIndex);
+        GroupData groupToRemove = page.findGroupInListById(oldList, groupIndex);
+        oldList.remove(oldList.indexOf(groupToRemove));
         Collections.sort(oldList);
         assertEquals(newList, oldList);
     }

@@ -1,4 +1,4 @@
-package com.example.tests;
+package com.example.common.data;
 
 import java.util.Objects;
 

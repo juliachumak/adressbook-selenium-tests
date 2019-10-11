@@ -1,5 +1,11 @@
 package com.example.tests;
 
+import com.example.common.core.PageBase;
+import com.example.common.core.TestBase;
+import com.example.common.data.GroupData;
+import com.example.common.pages.contacts.ContactsPage;
+import com.example.common.pages.groups.GroupsPage;
+import com.example.common.steps.GroupSteps;
 import org.testng.annotations.*;
 
 import java.util.*;
@@ -13,19 +19,18 @@ public class GroupCreationTests extends TestBase {
     public void testGroupCreationWithValidData(GroupData group) throws Exception {
 
         //save old state
-        List<GroupData> oldList = app.getGroupHelper().getGroupsList();
+        GroupsPage page = new ContactsPage(driver, PageBase.contactsPageTitle).get().openGroupsPage();
+        List<GroupData> oldList = page.getGroupsList();
 //        System.out.println("oldList is " + oldList.size());
 
         //actions
-        app.getGroupHelper().createGroup(group);
+        new GroupSteps(driver).createGroup(group);
 
         //save new state
-        List<GroupData> newList = app.getGroupHelper().getGroupsList();
+        List<GroupData> newList = page.getGroupsList();
 //        System.out.println("newList is " + newList.size());
 
         //compare states
-//        assertEquals(newList.size(), oldList.size() + 1);
-
         oldList.add(group);
         Collections.sort(oldList);
         assertEquals(newList, oldList);

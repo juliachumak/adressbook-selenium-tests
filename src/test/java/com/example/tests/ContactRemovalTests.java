@@ -1,4 +1,9 @@
 package com.example.tests;
+import com.example.common.core.PageBase;
+import com.example.common.core.TestBase;
+import com.example.common.data.ContactData;
+import com.example.common.pages.contacts.ContactsPage;
+import com.example.common.steps.ContactSteps;
 import org.testng.annotations.Test;
 import java.util.Collections;
 import java.util.List;
@@ -11,18 +16,18 @@ public class ContactRemovalTests extends TestBase {
     public void deleteSomeContact(){
 
         //save old state
-        List<ContactData> oldList = app.getContactHelper().getContactsList();
+        ContactsPage page = new ContactsPage(driver, PageBase.contactsPageTitle).get();
+        List<ContactData> oldList = page.getContactsList();
 
         //actions
-        int contactIndex = app.getContactHelper().getRandomContactIndexFromContactsList(app.getContactHelper().getContactIndexesList());
-        app.getContactHelper().deleteContact(contactIndex);
+        int contactIndex =  page.getRandomContactIndexFromContactsList(page.getContactIndexesList());
+        new ContactSteps(driver).deleteContact(contactIndex);
 
         //save new state
-        List<ContactData> newList = app.getContactHelper().getContactsList();
+        List<ContactData> newList = page.getContactsList();
 
         //compare states
-//        assertEquals(newList.size(), oldList.size() - 1);
-        ContactData contactToRemove = app.getContactHelper().findContactInListById(oldList, contactIndex);
+        ContactData contactToRemove = page.findContactInListById(oldList, contactIndex);
         oldList.remove(oldList.indexOf(contactToRemove));
 
         Collections.sort(oldList);
